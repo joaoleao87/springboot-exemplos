@@ -2,19 +2,36 @@ package br.ifpe.web2.model;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OrderColumn;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+@Entity
 public class Contato {
-
+	
+	@Id@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 	private String nome;
 	private String telefone;
 	private String email;
+	@ElementCollection
+	@OrderColumn
 	private String[] apps;
-	private String grupo;
+	@ManyToMany
+	private List<Grupo> grupos;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dataNascimento;
-	private String estado;
+	@Enumerated
+	private Estado estado;
 	public String getNome() {
 		return nome;
 	}
@@ -39,11 +56,18 @@ public class Contato {
 	public void setApps(String[] apps) {
 		this.apps = apps;
 	}
-	public String getGrupo() {
-		return grupo;
+
+	public int getId() {
+		return id;
 	}
-	public void setGrupo(String grupo) {
-		this.grupo = grupo;
+	public void setId(int id) {
+		this.id = id;
+	}
+	public List<Grupo> getGrupos() {
+		return grupos;
+	}
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
 	}
 	public Date getDataNascimento() {
 		return dataNascimento;
@@ -51,10 +75,11 @@ public class Contato {
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	public String getEstado() {
+
+	public Estado getEstado() {
 		return estado;
 	}
-	public void setEstado(String estado) {
+	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 	@Override
@@ -82,10 +107,11 @@ public class Contato {
 	}
 	@Override
 	public String toString() {
-		return "Contato [nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", apps="
-				+ Arrays.toString(apps) + ", grupo=" + grupo + ", dataNascimento=" + dataNascimento + ", estado="
+		return "Contato [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", apps="
+				+ Arrays.toString(apps) + ", grupos=" + grupos + ", dataNascimento=" + dataNascimento + ", estado="
 				+ estado + "]";
 	}
+
 	
 	
 	
