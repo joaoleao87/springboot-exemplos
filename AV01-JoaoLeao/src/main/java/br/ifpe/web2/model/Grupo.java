@@ -19,6 +19,7 @@ public class Grupo {
 	private Visivel visibilidade;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dataExpiracao;
+	
 	public int getId() {
 		return id;
 	}

@@ -1,19 +1,26 @@
 package br.ifpe.web2.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.ifpe.web2.model.Contato;
+import br.ifpe.web2.service.ContatoService;
+import br.ifpe.web2.service.GrupoService;
 
 @Controller
 public class ContatoController {
 	
-	private List<Contato> contatos = new ArrayList<>();
+	@Autowired
+	ContatoService contatoService;
+	
+	@Autowired 
+	GrupoService grupoService;
+	
 
 	@GetMapping("/exibirContato")
 	public String exibirForm(Contato contato) {
@@ -22,41 +29,27 @@ public class ContatoController {
 	
 	@PostMapping("/salvarContato")
 	public String salvarContato(Contato contato) {
-		this.contatos.remove(contato);
-		this.contatos.add(contato);
+		contatoService.criarContato(contato);
 		System.out.println(contato);
 		return "redirect:/listarContatos";
 	}
 	
 	@GetMapping("/listarContatos")
 	public String listarContatos(Model model) {
-		model.addAttribute("lista", contatos);
+		model.addAttribute("lista", contatoService.listarContato());
 		return "contatos-list";
 	}
 	
 	@GetMapping("/removerContato")
-	public String removerContato(String email) {
-		Contato contatoParaRemover = null;
-		for(Contato cont : this.contatos) {
-			if(cont.getEmail().equals(email)) {
-				contatoParaRemover = cont;
-			}
-		}
-		if (contatoParaRemover != null) {
-			this.contatos.remove(contatoParaRemover);
-		}
+	public String removerContato(Integer id) {
+		contatoService.deletarContatoById(id);
 		return "redirect:/listarContatos";
 	}
 	
 	@GetMapping("/editarContato")
-	public String editarContato(String email, Model model) {
-		Contato contatoParaEditar = null;
-		for(Contato cont : this.contatos) {
-			if(cont.getEmail().equals(email)) {
-				contatoParaEditar = cont;
-			}
-		}
-		model.addAttribute("contato", contatoParaEditar);
+	public String editarContato(Integer id, Model model) {
+		Contato contato = contatoService.buscarContato(id);
+		model.addAttribute("contato", contato);
 		return "contatos-form";
 	}
 }

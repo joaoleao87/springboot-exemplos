@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.Nullable;
 
 @Entity
 public class Contato {
@@ -27,6 +28,7 @@ public class Contato {
 	@OrderColumn
 	private String[] apps;
 	@ManyToMany
+	@Nullable
 	private List<Grupo> grupos;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dataNascimento;
