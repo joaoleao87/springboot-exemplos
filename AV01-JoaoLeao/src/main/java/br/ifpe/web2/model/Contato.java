@@ -19,7 +19,7 @@ import org.springframework.lang.Nullable;
 @Entity
 public class Contato {
 	
-	@Id@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String telefone;
@@ -59,10 +59,11 @@ public class Contato {
 		this.apps = apps;
 	}
 
-	public int getId() {
+
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public List<Grupo> getGrupos() {
