@@ -1,6 +1,6 @@
 package br.ifpe.web2.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class GrupoService {
 	}
 	
 	public List<Grupo> listarGrupoVigente(){
-		return grupoDAO.findByDataExpiracaoBefore(LocalDateTime.now());
+		return grupoDAO.findByDataExpiracaoBefore(LocalDate.now());
 	}
 	
 	public Grupo buscarGrupo(Integer id) {

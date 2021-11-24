@@ -23,7 +23,8 @@ public class ContatoController {
 	
 
 	@GetMapping("/exibirContato")
-	public String exibirForm(Contato contato) {
+	public String exibirForm(Contato contato, Model model) {
+		model.addAttribute("grupos", grupoService.listarGrupos());
 		return "contatos-form";
 	}
 	

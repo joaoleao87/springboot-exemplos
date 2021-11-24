@@ -1,6 +1,6 @@
 package br.ifpe.web2.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -9,21 +9,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.Nullable;
 
 @Entity
 public class Grupo {
-	@Id@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nomeGrupo;
 	@Enumerated
 	private Visivel visibilidade;
+	@Nullable
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date dataExpiracao;
+    private LocalDate dataExpiracao;
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getNomeGrupo() {
@@ -38,10 +40,10 @@ public class Grupo {
 	public void setVisibilidade(Visivel visibilidade) {
 		this.visibilidade = visibilidade;
 	}
-	public Date getDataExpiracao() {
+	public LocalDate getDataExpiracao() {
 		return dataExpiracao;
 	}
-	public void setDataExpiracao(Date dataExpiracao) {
+	public void setDataExpiracao(LocalDate dataExpiracao) {
 		this.dataExpiracao = dataExpiracao;
 	}
 	

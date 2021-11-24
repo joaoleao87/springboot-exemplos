@@ -20,33 +20,21 @@
 </nav>
 
 	<div class="container col-sm-12 col-md-6 col-md-offset-2" >
-		<form action="/salvarContato" th:object="${contato}" method="post">
+		<form action="/salvarGrupo" th:object="${grupo}" method="post">
 			<div class="form-group">
-				<label for="nome">Nome</label> <input type="text" th:field="*{nome}"
-					class="form-control" id="nome" placeholder="Nome do contato">
-			</div>
-			<div class="form-group">
-				<label for="telefone">Telefone</label> <input type="tel"
-					th:field="*{telefone}" class="form-control" id="telefone" placeholder="Telefone do contato">
-			</div>
-			<div class="form-group">
-				<label for="nome">E-mail</label> <input type="email" th:field="*{email}"
-					class="form-control" id="nome" aria-describedby="emailHelp"
-					placeholder="E-mail do contato">
-			</div>
+				<label for="nomeGrupo">Nome do Grupo</label> <input type="text" th:field="*{nomeGrupo}"
+					class="form-control" id="nomeGrupo" placeholder="Nome do Grupo">
 			<div class="form-group form-check">
-				<label for="apps">App de mensagens</label> <Br/>
-				<input type="radio" class="form-check-input" th:field="*{apps}" 
-					th:value="Telegram" />
-					<label class="form-check-label">Telegram</label>
-				<input type="radio" class="form-check-input"
-					th:field="*{apps}" th:value="Slack" />
-					<label class="form-check-label">Slack</label>
-
-			<div class="form-group">
-				<label for="data">Data de Nascimento</label> <input type="date" class="form-control"
-					th:field="*{dataNascimento}" />
+				<label >Visibilidade do grupo</label> <Br/>
+				<input type="radio" class="form-check-input" id="publico"
+				th:field="*{visibilidade}" 	th:value="PUBLICO" />
+				<label class="form-check-label"  for="publico">Público</label>
+				<input type="radio" class="form-check-input" id="privado"
+					th:field="*{visibilidade}" th:value="PRIVADO" />
+				<label class="form-check-label"  for="privado">Privado</label>
 			</div>
+			
+
 
 			<button type="submit" class="btn btn-primary">Enviar</button>
 		</form>
