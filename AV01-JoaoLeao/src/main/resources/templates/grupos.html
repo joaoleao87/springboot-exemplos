@@ -24,14 +24,18 @@
 			<div class="form-group">
 				<label for="nomeGrupo">Nome do Grupo</label> <input type="text" th:field="*{nomeGrupo}"
 					class="form-control" id="nomeGrupo" placeholder="Nome do Grupo">
-			<div class="form-group form-check">
-				<label >Visibilidade do grupo</label> <Br/>
-				<input type="radio" class="form-check-input" id="publico"
-				th:field="*{visibilidade}" 	th:value="PUBLICO" />
-				<label class="form-check-label"  for="publico">Público</label>
-				<input type="radio" class="form-check-input" id="privado"
-					th:field="*{visibilidade}" th:value="PRIVADO" />
-				<label class="form-check-label"  for="privado">Privado</label>
+				<div class="form-group">
+					<label for="visibilidade">Visibilidade</label> 
+						<select class="form-control" id="visibilidade"
+						th:field="*{visibilidade}">
+						<option th:value="''">Selecione</option>
+						<option th:value="PRIVADO">Privado</option>
+						<option th:value="PUBICO">Público</option>
+					</select>
+				</div>
+			<div class="form-group">
+				<label for="data">Data de Expiração</label> <input type="date" class="form-control"
+					th:field="*{dataExpiracao}" />
 			</div>
 			
 
