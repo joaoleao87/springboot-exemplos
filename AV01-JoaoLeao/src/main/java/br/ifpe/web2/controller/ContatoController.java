@@ -21,10 +21,14 @@ public class ContatoController {
 	@Autowired 
 	GrupoService grupoService;
 	
+	@GetMapping("/")
+	public String home() {
+		return "redirect:/exibirContato";
+	}
 
 	@GetMapping("/exibirContato")
 	public String exibirForm(Contato contato, Model model) {
-		model.addAttribute("gruposModel", grupoService.listarGrupos());
+		model.addAttribute("gruposModel", grupoService.listarGrupoVigente());
 		return "contatos-form";
 	}
 	
@@ -50,6 +54,7 @@ public class ContatoController {
 	@GetMapping("/editarContato")
 	public String editarContato(Integer id, Model model) {
 		Contato contato = contatoService.buscarContato(id);
+		model.addAttribute("gruposModel", grupoService.listarGrupos());
 		model.addAttribute("contato", contato);
 		return "contatos-form";
 	}

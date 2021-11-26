@@ -23,12 +23,24 @@ public class GrupoController {
 	@PostMapping("salvarGrupo")
 	public String salvarGrupo(Grupo grupo) {
 		grupoService.criarGrupo(grupo);
-		return "index";
+		return "redirect:/exibirContato";
 	}
 	
 	@GetMapping("/listarGrupos")
 	public String listarGrupos(Model model) {
 		model.addAttribute("listaGrupos", grupoService.listarGrupos());
-		return "index";
+		return "grupo-list";
+	}
+	
+	@GetMapping("/removerGrupo")
+	public String removerGrupo(Integer id) {
+		grupoService.deletarGrupo(id);	
+		return "redirect:/listarGrupos";
+	}
+	
+	@GetMapping("/editarGrupo")
+	public String editarContato(Integer id, Model model) {
+		model.addAttribute("grupo", grupoService.buscarGrupo(id));
+		return "grupos";
 	}
 }

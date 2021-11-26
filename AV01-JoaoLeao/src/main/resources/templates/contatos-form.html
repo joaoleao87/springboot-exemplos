@@ -52,7 +52,7 @@
 				<div th:each="listaDeGrupos : ${gruposModel}" class="form-group form-check">
 				<div class="form-group">
 					<label class="form-check-label" th:text="${listaDeGrupos.nomeGrupo}"> </label>
-					<input type="checkbox" class="form-check-input" th:field="*{grupos.id}" th:value="${listaDeGrupos.id}" />
+					<input type="radio" class="form-check-input" th:field="*{grupo.id}" th:value="${listaDeGrupos.id}" />
 				</div>
 			</div>
 				<div>

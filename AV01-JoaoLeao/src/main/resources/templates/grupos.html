@@ -21,21 +21,23 @@
 
 	<div class="container col-sm-12 col-md-6 col-md-offset-2" >
 		<form action="/salvarGrupo" th:object="${grupo}" method="post">
+		<input type="hidden" th:field="*{id}"  th:value="id">
 			<div class="form-group">
 				<label for="nomeGrupo">Nome do Grupo</label> <input type="text" th:field="*{nomeGrupo}"
 					class="form-control" id="nomeGrupo" placeholder="Nome do Grupo">
+			</div>	
 				<div class="form-group">
 					<label for="visibilidade">Visibilidade</label> 
-						<select class="form-control" id="visibilidade"
+						<select required class="form-control" id="visibilidade"
 						th:field="*{visibilidade}">
 						<option th:value="''">Selecione</option>
 						<option th:value="PRIVADO">Privado</option>
-						<option th:value="PUBICO">Público</option>
+						<option th:value="PUBLICO">Público</option>
 					</select>
 				</div>
 			<div class="form-group">
 				<label for="data">Data de Expiração</label> <input type="date" class="form-control"
-					th:field="*{dataExpiracao}" />
+					th:field="*{dataExpiracao}" required/>
 			</div>
 			
 

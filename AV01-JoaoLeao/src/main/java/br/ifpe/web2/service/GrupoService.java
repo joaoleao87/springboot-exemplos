@@ -19,8 +19,8 @@ public class GrupoService {
 		grupoDAO.save(grupo);
 	}
 	
-	public void deletarGrupo(Grupo grupo) {
-		grupoDAO.delete(grupo);
+	public void deletarGrupo(Integer id) {
+		grupoDAO.deleteById(id);
 	}
 	
 	public void editarGrupo(Grupo grupo) {
@@ -32,7 +32,7 @@ public class GrupoService {
 	}
 	
 	public List<Grupo> listarGrupoVigente(){
-		return grupoDAO.findByDataExpiracaoBefore(LocalDate.now());
+		return grupoDAO.findByDataExpiracaoAfter(LocalDate.now());
 	}
 	
 	public Grupo buscarGrupo(Integer id) {

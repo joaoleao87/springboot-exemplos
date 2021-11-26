@@ -2,15 +2,15 @@ package br.ifpe.web2.model;
 
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OrderColumn;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,11 +27,11 @@ public class Contato {
 	@ElementCollection
 	@OrderColumn
 	private String[] apps;
-	@ManyToMany
-	private List<Grupo> grupos;
+	@ManyToOne
+	private Grupo grupo;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dataNascimento;
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private Estado estado;
 	public String getNome() {
 		return nome;
@@ -65,11 +65,13 @@ public class Contato {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public List<Grupo> getGrupos() {
-		return grupos;
+
+	
+	public Grupo getGrupo() {
+		return grupo;
 	}
-	public void setGrupos(List<Grupo> grupos) {
-		this.grupos = grupos;
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
 	}
 	public Date getDataNascimento() {
 		return dataNascimento;
@@ -110,7 +112,7 @@ public class Contato {
 	@Override
 	public String toString() {
 		return "Contato [id=" + id + ", nome=" + nome + ", telefone=" + telefone + ", email=" + email + ", apps="
-				+ Arrays.toString(apps) + ", grupos=" + grupos + ", dataNascimento=" + dataNascimento + ", estado="
+				+ Arrays.toString(apps) + ", grupo=" + grupo + ", dataNascimento=" + dataNascimento + ", estado="
 				+ estado + "]";
 	}
 

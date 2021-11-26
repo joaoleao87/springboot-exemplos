@@ -3,6 +3,7 @@ package br.ifpe.web2.model;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,9 +17,8 @@ public class Grupo {
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nomeGrupo;
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private Visivel visibilidade;
-	@Nullable
 	@DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate dataExpiracao;
 	

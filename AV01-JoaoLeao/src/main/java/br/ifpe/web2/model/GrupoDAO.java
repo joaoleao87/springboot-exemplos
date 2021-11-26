@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GrupoDAO extends JpaRepository<Grupo, Integer>{
-	public List<Grupo> findByDataExpiracaoBefore(LocalDate DataExpiracao);
+	public List<Grupo> findByDataExpiracaoAfter(LocalDate DataExpiracao);
 }

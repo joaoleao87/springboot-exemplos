@@ -26,7 +26,7 @@
 				<th>Data de expiração</th>
 				<th>Acões</th>
 			</tr>
-			<tr th:each="cont : ${lista}">
+			<tr th:each="grupo : ${listaGrupos}">
 				<td th:text="${grupo.nomeGrupo}"></td>
 				<td th:text="${grupo.visibilidade}"></td>
 				<td th:text="${grupo.dataExpiracao}">
